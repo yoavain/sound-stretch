@@ -4,3 +4,4 @@
 /dist/
 **/*.env
 /test/output/
+/bin/docker-volume/

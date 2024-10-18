@@ -54,10 +54,7 @@ export CFLAGS="-static"
 export CXXFLAGS="-static"
 export LDFLAGS="-static -pthread"
 
-./configure \
-    --enable-static \
-    --disable-shared \
-    --prefix=/usr/local
+./configure --enable-static --disable-shared --prefix=/usr/local
 
 # Build
 make clean || true
@@ -76,3 +73,7 @@ cp soundstretch/soundstretch /usr/local/bin/soundstretch-static
 echo "Build complete. Binary location: /usr/local/bin/soundstretch-static"
 ```
 
+Output location:
+```
+/home/soundtouch/source/SoundStretch/soundstretch
+```

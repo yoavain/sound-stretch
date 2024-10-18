@@ -1,63 +1,65 @@
 {
-  "name": "paulstretch",
-  "version": "0.0.1",
-  "main": "index.js",
-  "keywords": [],
-  "author": "yoavain",
-  "license": "ISC",
-  "description": "",
-  "engines": {
-    "node": ">=20 <=23",
-    "npm": ">==10"
-  },
-  "scripts": {
-    "prepare": "git config --get core.hookspath || husky",
-    "postinstall": "npx fix-lockfile-integrity package-lock.json",
-    "build": "npm run tsc",
-    "test": "npm run eslint && npm run type-check",
-    "eslint": "eslint src/",
-    "eslint:fix": "npm run eslint -- --fix",
-    "type-check": "tsc --build tsconfig.json",
-    "jest": "cross-env FORCE_COLOR=0 jest",
-    "jest:unit": "cross-env FORCE_COLOR=0 jest ./test/",
-    "jest:integration": "cross-env FORCE_COLOR=0 jest ./integration_test/",
-    "prettier": "prettier --write *.json",
-    "pretsc": "rimraf dist",
-    "tsc": "tsc --build tsconfig.build.json",
-    "pre-commit": "lint-staged"
-  },
-  "devDependencies": {
-    "@eslint/compat": "1.2.0",
-    "@eslint/eslintrc": "3.1.0",
-    "@eslint/js": "9.12.0",
-    "@tsconfig/node22": "22.0.0",
-    "@types/fluent-ffmpeg": "2.1.26",
-    "@types/jest": "29.5.13",
-    "@types/node": "22.7.6",
-    "@typescript-eslint/eslint-plugin": "8.10.0",
-    "@typescript-eslint/parser": "8.10.0",
-    "eslint": "9.12.0",
-    "eslint-plugin-import": "2.31.0",
-    "eslint-plugin-jest": "28.8.3",
-    "eslint-plugin-n": "17.11.1",
-    "eslint-plugin-security": "3.0.1",
-    "globals": "15.11.0",
-    "husky": "9.1.6",
-    "jest": "29.7.0",
-    "lint-staged": "15.2.10",
-    "rimraf": "6.0.1",
-    "ts-node": "10.9.2",
-    "typescript": "5.6.3"
-  },
-  "dependencies": {
-    "fluent-ffmpeg": "2.1.3"
-  },
-  "lint-staged": {
-    "*.(ts|js)": [
-      "eslint --fix"
-    ],
-    "*.json": [
-      "prettier --write"
-    ]
-  }
+    "name": "paulstretch",
+    "version": "0.0.1",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "keywords": [],
+    "author": "yoavain",
+    "license": "ISC",
+    "description": "",
+    "engines": {
+        "node": ">=20 <=23",
+        "npm": ">==10"
+    },
+    "scripts": {
+        "prepare": "git config --get core.hookspath || husky",
+        "postinstall": "npx fix-lockfile-integrity package-lock.json",
+        "build": "npm run tsc",
+        "test": "npm run eslint && npm run type-check",
+        "eslint": "eslint src/",
+        "eslint:fix": "npm run eslint -- --fix",
+        "type-check": "tsc --build tsconfig.json",
+        "jest": "cross-env FORCE_COLOR=0 jest",
+        "jest:unit": "cross-env FORCE_COLOR=0 jest ./test/",
+        "jest:integration": "cross-env FORCE_COLOR=0 jest ./integration_test/",
+        "prettier": "prettier --write *.json",
+        "pretsc": "rimraf dist",
+        "tsc": "tsc --build tsconfig.build.json",
+        "pre-commit": "lint-staged"
+    },
+    "devDependencies": {
+        "@eslint/compat": "1.2.0",
+        "@eslint/eslintrc": "3.1.0",
+        "@eslint/js": "9.12.0",
+        "@tsconfig/node22": "22.0.0",
+        "@types/fluent-ffmpeg": "2.1.26",
+        "@types/jest": "29.5.13",
+        "@types/node": "22.7.6",
+        "@typescript-eslint/eslint-plugin": "8.10.0",
+        "@typescript-eslint/parser": "8.10.0",
+        "eslint": "9.12.0",
+        "eslint-plugin-import": "2.31.0",
+        "eslint-plugin-jest": "28.8.3",
+        "eslint-plugin-n": "17.11.1",
+        "eslint-plugin-security": "3.0.1",
+        "globals": "15.11.0",
+        "husky": "9.1.6",
+        "jest": "29.7.0",
+        "lint-staged": "15.2.10",
+        "prettier": "3.3.3",
+        "rimraf": "6.0.1",
+        "ts-node": "10.9.2",
+        "typescript": "5.6.3"
+    },
+    "dependencies": {
+        "fluent-ffmpeg": "2.1.3"
+    },
+    "lint-staged": {
+        "*.(ts|js)": [
+            "eslint --fix"
+        ],
+        "*.json": [
+            "prettier --write"
+        ]
+    }
 }

@@ -25,7 +25,9 @@
         "prettier": "prettier --write *.json",
         "pretsc": "rimraf dist",
         "tsc": "tsc --build tsconfig.build.json",
-        "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged",
+        "test:wavToWav": "node -r ts-node/register/transpile-only test/wavToWav.ts",
+        "test:mp3ToMp3": "node -r ts-node/register/transpile-only test/mp3ToMp3.ts"
     },
     "devDependencies": {
         "@eslint/compat": "1.2.0",

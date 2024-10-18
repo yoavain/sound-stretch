@@ -3,10 +3,13 @@ import { convertAudio } from "../src/audioConverter";
 import { changeTempo } from "../src/soundStretch";
 import type { Readable, Writable } from "node:stream";
 
+/**
+ * This example does converts an MP3 file to a new MP3 file with a specified tempo ratio
+ *
+ */
 const main = async () => {
     const tempo: number = 1.5;
     
-    // Example usage: mm3 -> wav -> paulstretched to wav -> mp3
     const inputStream: Readable = fs.createReadStream("./test/resources/demo.mp3");
     const outputStream: Writable = fs.createWriteStream(`./test/output/demo-stretched-${tempo}.mp3`);
 

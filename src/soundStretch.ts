@@ -3,7 +3,7 @@ require("dotenv").config();
 
 import { spawn } from "child_process";
 import type { Readable } from "stream";
-import type { ConversionResult } from "./types";
+import type { ConversionBlock, ConversionResult } from "./types";
 import * as console from "node:console";
 
 const SOUNDSTRETCH_EXECUTABLE: string = process.env.SOUNDSTRETCH_EXECUTABLE;
@@ -25,7 +25,11 @@ const ratioToPercentageChange = (ratio: number): number => {
  * @returns ConversionResult - Returns a readable stream and a completion promise
  * @throws Error if the tempo change is out of valid range or if soundstretch process fails
  */
-export function changeTempo(inputStream: Readable, tempoRatio: number): ConversionResult {
+export const changeTempo: ConversionBlock = (inputStream: Readable, tempoRatio: number): ConversionResult => {
+    if (tempoRatio === 1) {
+        return { stream: inputStream, completed: Promise.resolve() };
+    }
+
     // Validate tempo ratio range according to documentation
     if (tempoRatio <= 0.1 || tempoRatio > 10) {
         throw new Error("Tempo change must be between -60 and +60 semitones");
@@ -68,4 +72,4 @@ export function changeTempo(inputStream: Readable, tempoRatio: number): Conversi
         stream: soundstretch.stdout,
         completed
     };
-}
+};

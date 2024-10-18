@@ -3,3 +3,4 @@
 /*.iml
 /dist/
 **/*.env
+/test/output/

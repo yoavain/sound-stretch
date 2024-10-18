@@ -1,1 +1,8 @@
+import type { Readable } from "node:stream";
+
 export type AUDIO_FORMAT = "wav" | "mp3" | "flac";
+
+export interface ConversionResult {
+    stream: Readable;
+    completed: Promise<void>;
+}

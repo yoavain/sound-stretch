@@ -2,14 +2,10 @@
 require("dotenv").config();
 
 import type { Readable } from "node:stream";
-import type { AUDIO_FORMAT } from "./types";
+import type { AUDIO_FORMAT, ConversionResult } from "./types";
 import { PassThrough } from "node:stream";
 import ffmpeg from "fluent-ffmpeg";
 
-export interface ConversionResult {
-    stream: Readable;
-    completed: Promise<void>;
-}
 
 export const convertAudio = (inputStream: Readable, inputFormat: AUDIO_FORMAT, outputFormat: AUDIO_FORMAT): ConversionResult => {
     if (inputFormat === outputFormat) {

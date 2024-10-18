@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig.json",
+    "compilerOptions": {
+
+        "declaration": true,
+        "noEmit": false,
+        "outDir": "./_compile"
+    },
+    "include": ["./src/**/*"]
+}

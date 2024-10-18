@@ -3,7 +3,7 @@ import type { Readable, Writable } from "node:stream";
 import { convertAudio } from "../src";
 
 /**
- * This example does converts an MP3 file to a new MP3 file with a specified tempo ratio
+ * This example converts a WAV file to a new MP3 file without changing tempo
  *
  */
 const wavToMp3NoTempo = async () => {

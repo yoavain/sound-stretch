@@ -5,7 +5,7 @@ import { changeTempo } from "./soundStretch";
 import type { Readable } from "node:stream";
 import { PassThrough } from "node:stream";
 import type { AUDIO_FORMAT, AudioInputStream, AudioOutputStream, ConversionBlock, ConversionOptions, ConversionResult } from "./types";
-import { DefaultConversionOptions } from "./consts";
+import { NeutralConversionOptions } from "./consts";
 import ffmpeg from "fluent-ffmpeg";
 
 
@@ -51,12 +51,14 @@ export const convertAudioBlock: ConversionBlock = (inputStream: Readable, inputF
 };
 
 
-export const convertAudio = async (input: AudioInputStream, output: AudioOutputStream, conversionOptions: ConversionOptions = DefaultConversionOptions): Promise<void> => {
+export const convertAudio = async (input: AudioInputStream, output: AudioOutputStream, conversionOptions?: Partial<ConversionOptions>): Promise<void> => {
+    const mergedOptions: ConversionOptions  =  { ...NeutralConversionOptions, ...conversionOptions };
+
     // any -> wav
     const { stream: wavStream, completed: convertToWavCompleted } = convertAudioBlock(input.inputStream, input.format, "wav");
 
     // change tempo
-    const { stream: wavNewTempoStream, completed: changeTempoCompleted } = changeTempo(wavStream, conversionOptions.tempo);
+    const { stream: wavNewTempoStream, completed: changeTempoCompleted } = changeTempo(wavStream, mergedOptions.tempo);
 
     // wav -> any
     const { stream: mp3Stream, completed: convertFromWavCompleted } = convertAudioBlock(wavNewTempoStream, "wav", output.format);

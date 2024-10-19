@@ -1,5 +1,5 @@
 import type { ConversionOptions } from "./types";
 
-export const DefaultConversionOptions: ConversionOptions = {
+export const NeutralConversionOptions: ConversionOptions = {
     tempo: 1.0
 };

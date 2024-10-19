@@ -23,5 +23,5 @@ export type ConversionBlock = (inputStream: Readable, ...args: any) => Conversio
  * tempo: optional number - target tempo (default: 1.0)
  */
 export type ConversionOptions = {
-    tempo?: number;
+    tempo: number;
 }

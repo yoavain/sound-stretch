@@ -12,7 +12,7 @@ const wavToWav = async () => {
     const inputStream: Readable = fs.createReadStream("./test/resources/demo.wav");
     const outputStream: Writable = fs.createWriteStream(`./test/output/demo-stretched-${tempo}.wav`, { flags: "w"  });
 
-    await convertAudio({ inputStream, format: "wav" }, { outputStream, format: "wav" }, tempo);
+    await convertAudio({ inputStream, format: "wav" }, { outputStream, format: "wav" }, { tempo });
 };
 
 wavToWav().catch(console.error);

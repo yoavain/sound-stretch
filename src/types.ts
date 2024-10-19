@@ -18,3 +18,10 @@ export interface ConversionResult {
 }
 
 export type ConversionBlock = (inputStream: Readable, ...args: any) => ConversionResult;
+
+/**
+ * tempo: optional number - target tempo (default: 1.0)
+ */
+export type ConversionOptions = {
+    tempo?: number;
+}

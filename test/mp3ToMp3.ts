@@ -12,7 +12,7 @@ const mp3ToMp3 = async () => {
     const inputStream: Readable = fs.createReadStream("./test/resources/demo.mp3");
     const outputStream: Writable = fs.createWriteStream(`./test/output/demo-stretched-${tempo}.mp3`, { flags: "w" });
 
-    await convertAudio({ inputStream, format: "mp3" }, { outputStream, format: "mp3" }, tempo);
+    await convertAudio({ inputStream, format: "mp3" }, { outputStream, format: "mp3" }, { tempo });
 };
 
 mp3ToMp3().catch(console.error);

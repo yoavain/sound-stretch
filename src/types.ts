@@ -24,4 +24,5 @@ export type ConversionBlock = (inputStream: Readable, ...args: any) => Conversio
  */
 export type ConversionOptions = {
     tempo: number;
+    volume: number;
 }

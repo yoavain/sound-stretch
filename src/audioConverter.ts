@@ -9,8 +9,21 @@ import { NeutralConversionOptions } from "./consts";
 import ffmpeg from "fluent-ffmpeg";
 
 
-export const convertAudioBlock: ConversionBlock = (inputStream: Readable, inputFormat: AUDIO_FORMAT, outputFormat: AUDIO_FORMAT): ConversionResult => {
-    if (inputFormat === outputFormat) {
+const isVolumeChangeRequired = (volume?: number): boolean => {
+    return volume !== undefined && volume!== NeutralConversionOptions.volume;
+};
+
+const getVolumeDb = (volume: number): number => {
+    if (volume <= 0.1 || volume > 1.2) {
+        throw new Error("Volume must between 0.1 and 1.2");
+    }
+
+    return Math.log10(volume) * 20;
+};
+
+export const convertAudioBlock: ConversionBlock = (inputStream: Readable, inputFormat: AUDIO_FORMAT, outputFormat: AUDIO_FORMAT, volume? : number): ConversionResult => {
+    const volumeChangeRequired: boolean = isVolumeChangeRequired(volume);
+    if (inputFormat === outputFormat && !volumeChangeRequired) {
         return {
             stream: inputStream,
             completed: Promise.resolve()
@@ -24,6 +37,11 @@ export const convertAudioBlock: ConversionBlock = (inputStream: Readable, inputF
         .inputFormat(inputFormat)
         .toFormat(outputFormat)
         .inputOptions(["-analyzeduration 0"]);
+
+    if (volumeChangeRequired) {
+        const volumeDb = getVolumeDb(volume);
+        ffmpegCommand.audioFilters(`volume=${volumeDb.toFixed(1)}dB`);
+    }
 
     ffmpegCommand.pipe(passThrough, { end: true });
 
@@ -60,8 +78,8 @@ export const convertAudio = async (input: AudioInputStream, output: AudioOutputS
     // change tempo
     const { stream: wavNewTempoStream, completed: changeTempoCompleted } = changeTempo(wavStream, mergedOptions.tempo);
 
-    // wav -> any
-    const { stream: mp3Stream, completed: convertFromWavCompleted } = convertAudioBlock(wavNewTempoStream, "wav", output.format);
+    // wav -> any, with volume applied (if needed)
+    const { stream: mp3Stream, completed: convertFromWavCompleted } = convertAudioBlock(wavNewTempoStream, "wav", output.format, mergedOptions.volume);
 
     // Pipe output
     mp3Stream.pipe(output.outputStream);

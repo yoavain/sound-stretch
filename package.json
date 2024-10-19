@@ -28,7 +28,8 @@
         "pre-commit": "lint-staged",
         "test:wavToWav": "node -r ts-node/register/transpile-only test/wavToWav.ts",
         "test:mp3ToMp3": "node -r ts-node/register/transpile-only test/mp3ToMp3.ts",
-        "test:wavToMp3NoTempo": "node -r ts-node/register/transpile-only test/wavToMp3NoTempo.ts"
+        "test:wavToMp3NoTempo": "node -r ts-node/register/transpile-only test/wavToMp3NoTempo.ts",
+        "test:wavToWavReduceVolume": "node -r ts-node/register/transpile-only test/wavToWavReduceVolume.ts"
     },
     "devDependencies": {
         "@eslint/compat": "1.2.1",

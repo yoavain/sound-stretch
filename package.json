@@ -7,6 +7,9 @@
     "author": "yoavain",
     "license": "ISC",
     "description": "",
+    "files": [
+        "dist"
+    ],
     "engines": {
         "node": ">=20 <=23",
         "npm": ">=10"
@@ -15,6 +18,9 @@
         "prepare": "git config --get core.hookspath || husky",
         "postinstall": "npx fix-lockfile-integrity package-lock.json",
         "build": "npm run tsc",
+        "postbuild": "npm run copyfiles:win && npm run copyfiles:amazon",
+        "copyfiles:win": "copyfiles -u 1 ./src/bin/win-x86_64/* ./dist/",
+        "copyfiles:amazon": "copyfiles -u 1 ./src/bin/amazon-linux-2023-x86_64/* ./dist/",
         "test": "npm run eslint && npm run type-check && npm run jest:unit",
         "eslint": "eslint src/",
         "eslint:fix": "npm run eslint -- --fix",
@@ -41,6 +47,7 @@
         "@types/node": "22.7.9",
         "@typescript-eslint/eslint-plugin": "8.11.0",
         "@typescript-eslint/parser": "8.11.0",
+        "copyfiles": "2.4.1",
         "cross-env": "7.0.3",
         "eslint": "9.13.0",
         "eslint-plugin-import": "2.31.0",

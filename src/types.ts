@@ -17,7 +17,10 @@ export interface ConversionResult {
     completed: Promise<void>;
 }
 
-export type ConversionBlock = (inputStream: Readable, ...args: any) => ConversionResult;
+export type ConversionBlock<TArgs extends any[] = []> = (
+    inputStream: Readable,
+    ...args: [...TArgs] extends [...infer Rest] ? [...Rest, logger?: Logger] : [logger?: Logger]
+) => ConversionResult;
 
 /**
  * tempo: optional number - target tempo (default: 1.0)
@@ -25,4 +28,9 @@ export type ConversionBlock = (inputStream: Readable, ...args: any) => Conversio
 export type ConversionOptions = {
     tempo: number;
     volume: number;
+}
+
+export type Logger = {
+    info: (message: string) => void;
+    error: (message: string) => void;
 }

@@ -1,6 +1,6 @@
 {
-    "name": "audio-stretch",
-    "version": "0.0.1",
+    "name": "@yoavain/audio-stretch",
+    "version": "0.1.0",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "keywords": [],
@@ -9,13 +9,13 @@
     "description": "",
     "engines": {
         "node": ">=20 <=23",
-        "npm": ">==10"
+        "npm": ">=10"
     },
     "scripts": {
         "prepare": "git config --get core.hookspath || husky",
         "postinstall": "npx fix-lockfile-integrity package-lock.json",
         "build": "npm run tsc",
-        "test": "npm run eslint && npm run type-check",
+        "test": "npm run eslint && npm run type-check && npm run jest:unit",
         "eslint": "eslint src/",
         "eslint:fix": "npm run eslint -- --fix",
         "type-check": "tsc --build tsconfig.json",
@@ -37,10 +37,11 @@
         "@eslint/js": "9.13.0",
         "@tsconfig/node22": "22.0.0",
         "@types/fluent-ffmpeg": "2.1.26",
-        "@types/jest": "29.5.13",
-        "@types/node": "22.7.7",
-        "@typescript-eslint/eslint-plugin": "8.10.0",
-        "@typescript-eslint/parser": "8.10.0",
+        "@types/jest": "29.5.14",
+        "@types/node": "22.7.9",
+        "@typescript-eslint/eslint-plugin": "8.11.0",
+        "@typescript-eslint/parser": "8.11.0",
+        "cross-env": "7.0.3",
         "eslint": "9.13.0",
         "eslint-plugin-import": "2.31.0",
         "eslint-plugin-jest": "28.8.3",
@@ -52,6 +53,7 @@
         "lint-staged": "15.2.10",
         "prettier": "3.3.3",
         "rimraf": "6.0.1",
+        "ts-jest": "29.2.5",
         "ts-node": "10.9.2",
         "typescript": "5.6.3"
     },

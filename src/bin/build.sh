@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # Exit on error
 set -e
@@ -7,7 +7,7 @@ set -e
 mkdir -p /home/soundtouch-out
 
 # Install dependencies for Amazon Linux 2023
-dnf install -y git gcc gcc-c++ make kernel-devel automake autoconf libtool glibc-static libstdc++-static
+dnf install -y git xz gcc gcc-c++ make kernel-devel automake autoconf libtool glibc-static libstdc++-static
 
 # Clone source
 rm -rf soundtouch
@@ -32,3 +32,7 @@ make LDFLAGS="-static -pthread -all-static" || true
 echo Copying artifact
 ls -lart /home/soundtouch/source/SoundStretch/soundstretch
 cp /home/soundtouch/source/SoundStretch/soundstretch /home/soundtouch-out
+
+# Create a tar.xz file
+cd /home/soundtouch-out
+tar -cvJf soundstretch.tar.xz soundstretch

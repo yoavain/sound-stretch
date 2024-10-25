@@ -44,7 +44,7 @@
         "@tsconfig/node22": "22.0.0",
         "@types/fluent-ffmpeg": "2.1.26",
         "@types/jest": "29.5.14",
-        "@types/node": "22.7.9",
+        "@types/node": "22.8.0",
         "@typescript-eslint/eslint-plugin": "8.11.0",
         "@typescript-eslint/parser": "8.11.0",
         "copyfiles": "2.4.1",

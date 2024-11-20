@@ -90,7 +90,7 @@ export const convertAudioFfmpeg: ConversionBlock<[AUDIO_FORMAT, AUDIO_FORMAT, nu
                     resolved = true;
                     clearTimeout(timeout);
                     passThrough.destroy(err);
-                    logger.error(`FFmpeg returned with an error command: ${err}`);
+                    logger.error(`FFmpeg returned with an error command: ${err.message}`);
                     reject(err);
                 }
             });
